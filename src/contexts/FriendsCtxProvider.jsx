@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useRef } from 'react';
+import React, { createContext, useEffect, useReducer, useRef } from 'react';
 
 const initialData = {
 	editing: false,
@@ -12,6 +12,8 @@ const initialData = {
 		{ seq: 6, name: '지현', phone: '010-5034-2063', bef: false },
 	],
 };
+
+const defaultState = JSON.parse(localStorage['friends-contact'] || JSON.stringify(initialData));
 
 export const CtxState = createContext(null);
 export const CtxDispatch = createContext(null);
@@ -73,8 +75,12 @@ const reducer = (state, action) => {
 };
 
 const FriendsCtxProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(reducer, initialData);
+	const [state, dispatch] = useReducer(reducer, defaultState);
 	const nextSeq = useRef(7);
+
+	useEffect(() => {
+		localStorage['friends-contact'] = JSON.stringify(state);
+	}, [state]);
 
 	return (
 		<div>
