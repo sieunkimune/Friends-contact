@@ -62,7 +62,7 @@ const ContactContainer = () => {
 
 			<Container>
 				<Header>
-					<Img src="./../img/melonpan.png" alt="메론빵" />
+					<Img src="https://ifh.cc/g/NX1Jvn.png" alt="메론빵" />
 					<Title as="h1">친구 연락처 - {editing ? '수정' : '등록'}</Title>
 
 					{editing ? <ContactEdit /> : <ContactAdd />}
